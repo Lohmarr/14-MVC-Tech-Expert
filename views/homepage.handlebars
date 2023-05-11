@@ -1,3 +1,8 @@
-{{#each galleries as |gallery|}}
-{{> gallery-details}}
+{{#each blogPosts}}
+  <div class="blog-post">
+    <h2>{{title}}</h2>
+    <p class="post-author">Written by {{author}} on {{formattedDate created_at}}</p>
+    <p>{{{content}}}</p>
+    <p><a href="/blogpost/{{id}}">Read more &raquo;</a></p>
+  </div>
 {{/each}}

@@ -23,7 +23,7 @@ const sequelize = require('../config/connection');
     blog_post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'blog_post',
+        model: 'blogpost',
         key: 'id',
       },
     },
