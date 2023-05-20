@@ -1,7 +1,7 @@
-{{#each blogPosts}}
+{{#each blogs as |blog|}}
   <div class="blog-post">
     <h2>{{title}}</h2>
-    <p class="post-author">Written by {{author}} on {{formattedDate created_at}}</p>
+    <p class="user">Written by {{username}}</p>
     <p>{{{content}}}</p>
     <p><a href="/blogpost/{{id}}">Read more &raquo;</a></p>
   </div>

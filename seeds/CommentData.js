@@ -1,22 +1,22 @@
-const { Comment } = require("../models");
- const commentSeedData = [
+const { Comment } = require('../models');
+ const commentData = [
   {
-    content: "Great post! I totally agree with you.",
-    user_id: 4,
-    blogpost_id: 1,
+    comment_text: 'This is a great blog post!',
+    user_id: 1,
+    blog_post_id: 1
   },
   {
-    content: "Thanks for the helpful tutorial. I'm excited to start working with React!",
-    user_id: 5,
-    blogpost_id: 2,
+    comment_text: 'I found this post really informative. Thanks!',
+    user_id: 2,
+    blog_post_id: 1
   },
   {
-    content: "These tips are a lifesaver. Thanks for sharing!",
-    user_id: 6,
-    blogpost_id: 3,
-  },
+    comment_text: 'I disagree with some of the points made in this post.',
+    user_id: 3,
+    blog_post_id: 2
+  }
 ];
 
- const seedComments = () => Comment.bulkCreate(commentSeedData);
+ const seedComments = () => Comment.bulkCreate(commentData);
  
  module.exports = seedComments;

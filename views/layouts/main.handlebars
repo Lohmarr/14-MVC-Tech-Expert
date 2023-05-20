@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{pageTitle}}</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
   <header>
@@ -15,8 +15,7 @@
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/logout">Logout</a></li>
         {{else}}
-        <li><a href="/signup">Sign up</a></li>
-        <li><a href="/signin">Sign in</a></li>
+        <li><a href="/login">Login</a></li>
         {{/if}}
       </ul>
     </nav>
@@ -24,6 +23,9 @@
   <main>
     {{{body}}}
   </main>
+  {{#if loggedIn}}
+  <script src="../../public/js/logout.js"></script>
+  {{/if}}
   <footer>
     <p>&copy; {{currentYear}} My Blog</p>
   </footer>
