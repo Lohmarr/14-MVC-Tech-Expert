@@ -52,7 +52,7 @@ router.get("/blog/:id", async (req, res) => {
   }
 });
 
-// Route for dashboard - requires user to be logged in
+// Get dashboard - requires user to be logged in
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.userId, {
@@ -66,6 +66,26 @@ router.get("/dashboard", withAuth, async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+// Get login
+router.get('/login', (req, res) => {
+	if (req.session.loggedIn) {
+		res.redirect('/');
+		return;
+	}
+
+	res.render('login');
+});
+
+// GET logout
+router.get('/logout', (req, res) => {
+	if (req.session.loggedIn) {
+		req.session.destroy(() => {
+			res.status(204).end();
+		});
+	}
+	res.redirect('/');
 });
 
 // Route for creating a blog post - requires user to be logged in

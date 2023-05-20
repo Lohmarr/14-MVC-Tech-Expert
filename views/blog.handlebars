@@ -1,12 +1,12 @@
 <div class="blog-post">
   <h2>{{title}}</h2>
-  <p class="post-author">Written by {{author}} on {{formattedDate created_at}}</p>
+  {{!-- <p class="post-author">Written by {{author}} on {{formattedDate created_at}}</p> --}}
   <p>{{{content}}}</p>
 </div>
 <div class="comments">
   {{#each comments}}
     <div class="comment">
-      <p class="comment-author">Comment by {{author}} on {{formattedDate created_at}}</p>
+      {{!-- <p class="comment-author">Comment by {{author}} on {{formattedDate created_at}}</p> --}}
       <p>{{{content}}}</p>
     </div>
   {{/each}}
