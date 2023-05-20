@@ -120,4 +120,58 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   }
 });
 
+// Route for creating a comment - requires user to be logged in
+router.post('/blogpost/:id/comments', withAuth, async (req, res) => {
+  try {
+    const newComment = await Comment.create({
+      content: req.body.content,
+      user_id: req.session.userId,
+      blogpost_id: req.params.id,
+    });
+     res.status(200).json({ message: 'Comment created successfully' });
+   } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// update comment, required loggedIn
+router.put('/blogpost/:id/comments', withAuth, async (req, res) => {
+	try {
+		const comment = await Comment.findByPk(req.params.commentId);
+		if (comment.author_id !== req.session.userId) {
+			res.status(403).json({ message: 'Not your comment!' });
+			return;
+		}
+		const updatedComment = await Comment.update(req.body, {
+			where: {
+				id: req.params.commentId,
+			},
+		});
+		res.status(200).json(updatedComment);
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
+// delete comment, required loggedIn
+router.delete('/blog/:id/comments', withAuth, async (req, res) => {
+	try {
+		// Must be author of comment to delete it
+		const comment = await Comment.findByPk(req.params.commentId);
+		if (comment.author_id !== req.session.userId) {
+			res.status(403).json({ message: 'Not your comment!' });
+			return;
+		}
+		const deletedComment = await Comment.destroy({
+			where: {
+				id: req.params.commentId,
+			},
+		});
+		res.status(200).json(deletedComment);
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
 module.exports = router;
